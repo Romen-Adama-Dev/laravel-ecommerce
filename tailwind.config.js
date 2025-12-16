@@ -14,6 +14,15 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                dielca: {
+                    dark: '#0A2C51',
+                    mid:  '#1E4A8B',
+                    light:'#3C78D8',
+                    grayText: '#4A4A4A',
+                    neutralBg: '#F5F5F5',
+                }
+            }
         },
     },
 
