@@ -9,11 +9,10 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::query()
+        $products = \App\Models\Product::query()
             ->where('is_active', true)
             ->where('stock', '>', 0)
-            ->select(['id', 'name', 'slug', 'price'])
-            ->orderByDesc('id')
+            ->latest()
             ->paginate(12);
 
         return view('store.products.index', compact('products'));
@@ -21,11 +20,9 @@ class ProductController extends Controller
 
     public function show(string $slug)
     {
-        $product = Product::query()
-            ->where('slug', $slug)
-            ->where('is_active', true)
-            ->firstOrFail();
+        $product = Product::where('slug', $slug)->firstOrFail();
 
         return view('store.products.show', compact('product'));
     }
+    
 }
