@@ -18,6 +18,7 @@ class ProductFactory extends Factory
             'price' => $this->faker->numberBetween(500, 50000),
             'stock' => $this->faker->numberBetween(0, 100),
             'is_active' => true,
+            'category_id' => null,
         ];
     }
 }

@@ -14,8 +14,18 @@
             @endforeach
         </div>
 
-        <div class="mt-6">
-            {{ $products->links() }}
+        <div class="mb-6 flex flex-wrap gap-2">
+            <a href="{{ route('products.index') }}"
+            class="px-3 py-1 rounded border {{ request('category') ? '' : 'bg-gray-900 text-white' }}">
+                Todas
+            </a>
+
+            @foreach($categories as $category)
+                <a href="{{ route('products.index', ['category' => $category->slug]) }}"
+                class="px-3 py-1 rounded border {{ request('category') === $category->slug ? 'bg-gray-900 text-white' : '' }}">
+                    {{ $category->name }}
+                </a>
+            @endforeach
         </div>
     </div>
 </x-app-layout>

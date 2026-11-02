@@ -2,13 +2,21 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        \App\Models\Product::factory(20)->create();
+        $categoryIds = Category::pluck('id')->all();
+
+        Product::factory()
+            ->count(60)
+            ->state(fn () => [
+                'category_id' => $categoryIds[array_rand($categoryIds)],
+            ])
+            ->create();
     }
 }
